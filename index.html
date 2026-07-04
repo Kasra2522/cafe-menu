@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منوی کاژه</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منوی کاژه</title>
+<style>
+body{margin:0;font-family:tahoma;background:#111;color:#fff}
+header{background:linear-gradient(135deg,#3a2418,#c89b63);padding:35px 20px;text-align:center}
+h1{margin:0;font-size:32px}
+.search{padding:15px}
+input{width:100%;padding:14px;border-radius:14px;border:none;font-size:16px}
+.tabs{display:flex;gap:10px;overflow:auto;padding:10px}
+button{background:#c89b63;color:#111;border:none;border-radius:20px;padding:10px 18px;font-weight:bold}
+.menu{padding:15px}
+.item{background:#1d1d1d;margin-bottom:14px;padding:15px;border-radius:18px;box-shadow:0 4px 12px #0005}
+.item h3{margin:0 0 8px;color:#f3c27a}
+.price{color:#fff;font-weight:bold;margin-top:8px}
+.desc{color:#bbb;font-size:14px}
+</style>
 </head>
 <body>
-    <h1>☕ به کاژه خوش آمدید</h1>
+
+<header>
+  <h1>☕ به کاژه خوش آمدید</h1>
+  <p>منوی دیجیتال کافه کاژه</p>
+</header>
+
+<div class="search">
+  <input id="search" placeholder="جستجوی محصول...">
+</div>
+
+<div class="tabs">
+  <button onclick="filterMenu('all')">همه</button>
+  <button onclick="filterMenu('hot')">گرم</button>
+  <button onclick="filterMenu('cold')">سرد</button>
+  <button onclick="filterMenu('dessert')">دسر</button>
+</div>
+
+<div class="menu" id="menu">
+  <div class="item hot"><h3>اسپرسو</h3><div class="desc">قهوه غلیظ و کلاسیک</div><div class="price">۸۰,۰۰۰ تومان</div></div>
+  <div class="item hot"><h3>لاته</h3><div class="desc">اسپرسو با شیر بخار داده‌شده</div><div class="price">۱۲۰,۰۰۰ تومان</div></div>
+  <div class="item cold"><h3>آیس آمریکانو</h3><div class="desc">قهوه سرد و خنک</div><div class="price">۱۱۰,۰۰۰ تومان</div></div>
+  <div class="item cold"><h3>موهیتو</h3><div class="desc">نوشیدنی خنک نعنا و لیمو</div><div class="price">۱۳۰,۰۰۰ تومان</div></div>
+  <div class="item dessert"><h3>چیزکیک</h3><div class="desc">دسر خوشمزه و خامه‌ای</div><div class="price">۱۵۰,۰۰۰ تومان</div></div>
+</div>
+
+<script>
+function filterMenu(cat){
+  document.querySelectorAll('.item').forEach(item=>{
+    item.style.display = cat==='all' || item.classList.contains(cat) ? 'block' : 'none';
+  });
+}
+document.getElementById('search').addEventListener('input', function(){
+  let q=this.value;
+  document.querySelectorAll('.item').forEach(item=>{
+    item.style.display = item.innerText.includes(q) ? 'block' : 'none';
+  });
+});
+</script>
+
 </body>
 </html>
